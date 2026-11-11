@@ -6,6 +6,7 @@ import androidx.compose.ui.graphics.Color
 internal sealed interface Colors {
     data class Backgrounds(
         val primary: Color,
+        val secondary: Color,
     )
 
     data class Texts(
@@ -18,6 +19,7 @@ internal sealed interface Colors {
     data object Light : Colors {
         override val backgrounds = Backgrounds(
             primary = Color(0xffffffff),
+            secondary = Color(0xffefefef),
         )
         override val texts = Texts(
             primary = Color(0xff000000),
@@ -27,6 +29,7 @@ internal sealed interface Colors {
     data object Dark : Colors {
         override val backgrounds = Backgrounds(
             primary = Color(0xff000000),
+            secondary = Color(0xff101010),
         )
         override val texts = Texts(
             primary = Color(0xffffffff),
