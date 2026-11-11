@@ -39,7 +39,12 @@ internal fun QuotesScreen(
         ) {
             quotes?.forEach { quote ->
                 item(key = quote.id) {
-                    Text(text = quote.value)
+                    Text(
+                        text = quote.value,
+                        onClick = {
+                            viewModel.deleteQuote(id = quote.id)
+                        },
+                    )
                 }
             }
         }

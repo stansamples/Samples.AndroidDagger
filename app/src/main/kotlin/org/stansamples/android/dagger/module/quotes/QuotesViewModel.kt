@@ -23,4 +23,19 @@ internal class QuotesViewModel(
             providers.locals.quotes
         }
     }
+
+    fun deleteQuote(id: String) = viewModelScope.launch {
+        _quotes.value = withContext(providers.contexts.io) {
+            val quotes = providers.locals.quotes.toMutableList()
+            for (i in quotes.indices) {
+                val quote = quotes[i]
+                if (quote.id == id) {
+                    quotes.removeAt(i)
+                    break
+                }
+            }
+            providers.locals.quotes = quotes
+            quotes
+        }
+    }
 }
