@@ -10,9 +10,9 @@ internal class FinalLocals(
 ) : Locals {
     override var quotes: List<Quote>
         get() {
-            return Mocks.quotes
+            return Mocks.quotes.filter { Mocks.saved.contains(it.id) }
         }
         set(value) {
-            Mocks.quotes = value
+            Mocks.saved = value.mapTo(mutableSetOf()) { it.id }
         }
 }

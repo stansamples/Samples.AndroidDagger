@@ -17,10 +17,12 @@ import org.stansamples.android.dagger.provider.Contexts
 import org.stansamples.android.dagger.provider.FinalCoders
 import org.stansamples.android.dagger.provider.FinalLocals
 import org.stansamples.android.dagger.provider.FinalLoggers
+import org.stansamples.android.dagger.provider.FinalRemotes
 import org.stansamples.android.dagger.provider.Flows
 import org.stansamples.android.dagger.provider.Locals
 import org.stansamples.android.dagger.provider.Loggers
 import org.stansamples.android.dagger.provider.Providers
+import org.stansamples.android.dagger.provider.Remotes
 
 internal class App : Application() {
     override fun onCreate() {
@@ -43,11 +45,13 @@ internal class App : Application() {
             context = context,
             coders = coders,
         )
+        val remotes: Remotes = FinalRemotes()
         _providers = Providers(
             contexts = contexts,
             loggers = loggers,
             flows = flows,
             locals = locals,
+            remotes = remotes,
         )
     }
 

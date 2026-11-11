@@ -5,4 +5,5 @@ internal class Providers(
     val loggers: Loggers,
     val flows: Flows,
     val locals: Locals,
+    val remotes: Remotes,
 )
