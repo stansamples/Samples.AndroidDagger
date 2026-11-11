@@ -3,7 +3,9 @@ package org.stansamples.android.dagger.provider
 import org.stansamples.android.dagger.Mocks
 import org.stansamples.android.dagger.entity.Quote
 
-internal class FinalRemotes : Remotes {
+internal class FinalRemotes(
+    coders: Coders,
+) : Remotes {
     private var indices = 0
 
     override fun getRandomQuote(): Quote {

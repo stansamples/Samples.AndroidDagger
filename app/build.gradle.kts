@@ -71,4 +71,5 @@ androidComponents.onVariants { variant ->
 dependencies {
     implementation("androidx.activity:activity-compose:1.13.0")
     implementation("org.jetbrains.compose.foundation:foundation:1.12.2")
+    "realImplementation"("com.squareup.okhttp3:okhttp:5.3.0")
 }

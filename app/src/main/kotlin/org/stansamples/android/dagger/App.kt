@@ -45,7 +45,9 @@ internal class App : Application() {
             context = context,
             coders = coders,
         )
-        val remotes: Remotes = FinalRemotes()
+        val remotes: Remotes = FinalRemotes(
+            coders = coders,
+        )
         _providers = Providers(
             contexts = contexts,
             loggers = loggers,

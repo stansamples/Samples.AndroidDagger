@@ -8,8 +8,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import org.stansamples.android.dagger.BuildConfig
 import org.stansamples.android.dagger.module.theme.Colors
 import org.stansamples.android.dagger.util.Button
+import org.stansamples.android.dagger.util.Text
 
 internal object MainScreen {
     enum class State {
@@ -52,6 +54,11 @@ internal fun MainScreen(
                     toState(MainScreen.State.RandomQuote)
                 },
             )
+            val text = """
+                ${BuildConfig.APPLICATION_ID}
+                ${BuildConfig.VERSION_NAME}-${BuildConfig.VERSION_CODE}
+            """.trimIndent()
+            Text(text = text)
         }
     }
 }
