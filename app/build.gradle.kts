@@ -35,6 +35,22 @@ android {
 
     buildFeatures.buildConfig = true
 
+    productFlavors {
+        "specifics".also { dimension ->
+            flavorDimensions += dimension
+            create("real") {
+                this.dimension = dimension
+                manifestPlaceholders["specifics"] = name
+            }
+            create("mock") {
+                this.dimension = dimension
+                manifestPlaceholders["specifics"] = name
+                applicationIdSuffix = ".$name"
+                versionNameSuffix = "-$name"
+            }
+        }
+    }
+
     compileOptions {
         targetCompatibility = JavaVersion.VERSION_17
         sourceCompatibility = JavaVersion.VERSION_17

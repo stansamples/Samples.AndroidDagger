@@ -12,8 +12,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import org.stansamples.android.dagger.entity.ThemeState
 import org.stansamples.android.dagger.module.theme.Colors
 import org.stansamples.android.dagger.provider.Contexts
+import org.stansamples.android.dagger.provider.FinalLocals
 import org.stansamples.android.dagger.provider.FinalLoggers
 import org.stansamples.android.dagger.provider.Flows
+import org.stansamples.android.dagger.provider.Locals
 import org.stansamples.android.dagger.provider.Loggers
 import org.stansamples.android.dagger.provider.Providers
 
@@ -32,10 +34,12 @@ internal class App : Application() {
         val flows: Flows = Flows(
             themes = MutableStateFlow(themeState),
         )
+        val locals: Locals = FinalLocals()
         _providers = Providers(
             contexts = contexts,
             loggers = loggers,
             flows = flows,
+            locals = locals,
         )
     }
 
