@@ -1,6 +1,7 @@
 package org.stansamples.android.dagger
 
 import android.app.Application
+import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.remember
@@ -22,6 +23,7 @@ import org.stansamples.android.dagger.provider.Providers
 internal class App : Application() {
     override fun onCreate() {
         super.onCreate()
+        val context: Context = this
         val contexts = Contexts(
             main = Dispatchers.Main,
             default = Dispatchers.Default,
@@ -34,7 +36,7 @@ internal class App : Application() {
         val flows: Flows = Flows(
             themes = MutableStateFlow(themeState),
         )
-        val locals: Locals = FinalLocals()
+        val locals: Locals = FinalLocals(context = context)
         _providers = Providers(
             contexts = contexts,
             loggers = loggers,
