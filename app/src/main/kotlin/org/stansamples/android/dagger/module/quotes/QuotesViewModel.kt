@@ -15,16 +15,19 @@ import org.stansamples.android.dagger.provider.Providers
 internal class QuotesViewModel(
     private val providers: Providers,
 ) : ViewModel(CoroutineScope(providers.contexts.main + SupervisorJob())) {
+    private val logger = providers.loggers.create("[Quotes]")
     private val _quotes = MutableStateFlow<List<Quote>?>(null)
     val quotes: StateFlow<List<Quote>?> = _quotes.asStateFlow()
 
     fun requestQuotes() = viewModelScope.launch {
+        logger.debug("request quotes")
         _quotes.value = withContext(providers.contexts.io) {
             providers.locals.quotes
         }
     }
 
     fun deleteQuote(id: String) = viewModelScope.launch {
+        logger.debug("delete quote: $id")
         _quotes.value = withContext(providers.contexts.io) {
             val quotes = providers.locals.quotes.toMutableList()
             for (i in quotes.indices) {

@@ -11,9 +11,7 @@ internal class FinalLocals(
     private val prefs = context.getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE)
     override var quotes: List<Quote>
         get() {
-            val values = mutableSetOf<String>()
-            prefs.getStringSet("quotes", values)
-            return values.map { coders.quotes.decode(it.toByteArray()) }
+            return prefs.getStringSet("quotes", emptySet())?.map { coders.quotes.decode(it.toByteArray()) }.orEmpty()
         }
         set(value) {
             prefs.edit()

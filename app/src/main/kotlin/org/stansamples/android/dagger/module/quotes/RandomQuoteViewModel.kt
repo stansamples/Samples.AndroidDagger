@@ -46,11 +46,13 @@ internal class RandomQuoteViewModel(
     }
 
     fun save(quote: Quote) = viewModelScope.launch {
-        logger.debug("save: ${quote.id}")
+        logger.debug("save quote: ${quote.id}")
         _loadings.value = true
         _states.value = withContext(providers.contexts.default) {
             runCatching {
                 providers.locals.quotes += quote
+            }.onFailure { error ->
+                logger.warning("save quote ${quote.id} error: $error")
             }.map {
                 State(
                     isSaved = true,
