@@ -19,6 +19,7 @@ import org.stansamples.android.dagger.module.theme.Colors
 internal fun Button(
     text: String,
     onClick: () -> Unit,
+    enabled: Boolean = true,
 ) {
     val colors = Colors.Local.current
     BasicText(
@@ -27,7 +28,7 @@ internal fun Button(
             .padding(horizontal = 16.dp, vertical = 8.dp)
             .background(colors.backgrounds.secondary, RoundedCornerShape(16.dp))
             .clip(RoundedCornerShape(16.dp))
-            .clickable(onClick = onClick)
+            .clickable(enabled = enabled, onClick = onClick)
             .padding(16.dp),
         text = text,
         style = TextStyle(

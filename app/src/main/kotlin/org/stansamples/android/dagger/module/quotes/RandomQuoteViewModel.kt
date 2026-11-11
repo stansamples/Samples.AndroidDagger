@@ -18,9 +18,12 @@ internal class RandomQuoteViewModel(
     private val logger = providers.loggers.create("[RandomQuote]")
     private val _states = MutableStateFlow<Result<Quote>?>(null)
     val states: StateFlow<Result<Quote>?> = _states.asStateFlow()
+    private val _loadings = MutableStateFlow<Boolean>(true)
+    val loadings: StateFlow<Boolean> = _loadings
 
     fun requestRandomQuote() = viewModelScope.launch {
         logger.debug("request random quote")
+        _loadings.value = true
         _states.value = withContext(providers.contexts.default) {
             runCatching {
                 providers.remotes.getRandomQuote()
@@ -28,5 +31,6 @@ internal class RandomQuoteViewModel(
                 logger.warning("request random quote error: $error")
             }
         }
+        _loadings.value = false
     }
 }
