@@ -8,6 +8,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import org.stansamples.android.dagger.module.main.MainScreen
+import org.stansamples.android.dagger.module.quotes.QuotesScreen
 import org.stansamples.android.dagger.module.settings.SettingsScreen
 import org.stansamples.android.dagger.module.theme.Colors
 
@@ -22,6 +23,11 @@ internal fun RouterScreen() {
     ) {
         when (states.value) {
             MainScreen.State.Settings -> SettingsScreen(
+                onBack = {
+                    states.value = null
+                },
+            )
+            MainScreen.State.Quotes -> QuotesScreen(
                 onBack = {
                     states.value = null
                 },

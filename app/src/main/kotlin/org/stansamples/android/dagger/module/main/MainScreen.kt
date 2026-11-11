@@ -14,6 +14,7 @@ import org.stansamples.android.dagger.util.Button
 internal object MainScreen {
     enum class State {
         Settings,
+        Quotes,
     }
 }
 
@@ -36,6 +37,12 @@ internal fun MainScreen(
                 text = "settings",
                 onClick = {
                     toState(MainScreen.State.Settings)
+                },
+            )
+            Button(
+                text = "quotes",
+                onClick = {
+                    toState(MainScreen.State.Quotes)
                 },
             )
         }
