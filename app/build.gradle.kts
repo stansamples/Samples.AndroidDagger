@@ -8,6 +8,8 @@ repositories {
 
 plugins {
     id("com.android.application")
+    id("org.jetbrains.compose") version "1.12.2"
+    id("org.jetbrains.kotlin.plugin.compose") version "2.3.21"
 }
 
 android {
@@ -16,7 +18,7 @@ android {
 
     defaultConfig {
         applicationId = namespace
-        minSdk = 30
+        minSdk = 32
         targetSdk = compileSdk
         versionCode = 1
         versionName = "0.0.$versionCode"
@@ -51,5 +53,6 @@ androidComponents.onVariants { variant ->
 }
 
 dependencies {
-    implementation("androidx.activity:activity:1.13.0")
+    implementation("androidx.activity:activity-compose:1.13.0")
+    implementation("org.jetbrains.compose.foundation:foundation:1.12.2")
 }
