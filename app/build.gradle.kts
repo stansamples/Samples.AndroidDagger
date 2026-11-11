@@ -10,6 +10,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.compose") version "1.12.2"
     id("org.jetbrains.kotlin.plugin.compose") version "2.3.21"
+    id("com.google.devtools.ksp") version "2.3.12"
 }
 
 android {
@@ -72,4 +73,7 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.13.0")
     implementation("org.jetbrains.compose.foundation:foundation:1.12.2")
     "realImplementation"("com.squareup.okhttp3:okhttp:5.3.0")
+    val daggerVersion = "2.60.1"
+    implementation("com.google.dagger:dagger:$daggerVersion")
+    ksp("com.google.dagger:dagger-compiler:$daggerVersion")
 }
