@@ -15,9 +15,14 @@ import org.stansamples.android.dagger.provider.Providers
 internal class RandomQuoteViewModel(
     private val providers: Providers,
 ) : ViewModel(CoroutineScope(providers.contexts.main + SupervisorJob())) {
+    class State(
+        val isSaved: Boolean,
+        val quote: Quote,
+    )
+
     private val logger = providers.loggers.create("[RandomQuote]")
-    private val _states = MutableStateFlow<Result<Quote>?>(null)
-    val states: StateFlow<Result<Quote>?> = _states.asStateFlow()
+    private val _states = MutableStateFlow<Result<State>?>(null)
+    val states: StateFlow<Result<State>?> = _states.asStateFlow()
     private val _loadings = MutableStateFlow<Boolean>(true)
     val loadings: StateFlow<Boolean> = _loadings
 
@@ -29,6 +34,28 @@ internal class RandomQuoteViewModel(
                 providers.remotes.getRandomQuote()
             }.onFailure { error ->
                 logger.warning("request random quote error: $error")
+            }.map { quote ->
+                val isSaved = providers.locals.quotes.any { it.id == quote.id }
+                State(
+                    isSaved = isSaved,
+                    quote = quote,
+                )
+            }
+        }
+        _loadings.value = false
+    }
+
+    fun save(quote: Quote) = viewModelScope.launch {
+        logger.debug("save: ${quote.id}")
+        _loadings.value = true
+        _states.value = withContext(providers.contexts.default) {
+            runCatching {
+                providers.locals.quotes += quote
+            }.map {
+                State(
+                    isSaved = true,
+                    quote = quote,
+                )
             }
         }
         _loadings.value = false

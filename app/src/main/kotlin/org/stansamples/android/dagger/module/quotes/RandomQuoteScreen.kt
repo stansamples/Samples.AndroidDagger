@@ -43,8 +43,16 @@ internal fun RandomQuoteScreen(
                 Text(text = "loading", textColor = colors.texts.secondary, backColor = Color.Transparent)
             } else {
                 states.value?.fold(
-                    onSuccess = { quote ->
-                        Text(text = quote.value)
+                    onSuccess = { state ->
+                        Text(text = state.quote.value)
+                        if (!state.isSaved) {
+                            Button(
+                                text = "save",
+                                onClick = {
+                                    viewModel.save(quote = state.quote)
+                                },
+                            )
+                        }
                     },
                     onFailure = {
                         // noop
@@ -53,7 +61,6 @@ internal fun RandomQuoteScreen(
                 Button(
                     text = "request",
                     onClick = viewModel::requestRandomQuote,
-                    enabled = !isLoading,
                 )
             }
         }
