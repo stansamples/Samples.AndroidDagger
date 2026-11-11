@@ -9,6 +9,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import org.stansamples.android.dagger.module.main.MainScreen
 import org.stansamples.android.dagger.module.quotes.QuotesScreen
+import org.stansamples.android.dagger.module.quotes.RandomQuoteScreen
 import org.stansamples.android.dagger.module.settings.SettingsScreen
 import org.stansamples.android.dagger.module.theme.Colors
 
@@ -28,6 +29,11 @@ internal fun RouterScreen() {
                 },
             )
             MainScreen.State.Quotes -> QuotesScreen(
+                onBack = {
+                    states.value = null
+                },
+            )
+            MainScreen.State.RandomQuote -> RandomQuoteScreen(
                 onBack = {
                     states.value = null
                 },

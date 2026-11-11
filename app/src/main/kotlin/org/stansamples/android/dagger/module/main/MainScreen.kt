@@ -15,6 +15,7 @@ internal object MainScreen {
     enum class State {
         Settings,
         Quotes,
+        RandomQuote,
     }
 }
 
@@ -43,6 +44,12 @@ internal fun MainScreen(
                 text = "quotes",
                 onClick = {
                     toState(MainScreen.State.Quotes)
+                },
+            )
+            Button(
+                text = "random quote",
+                onClick = {
+                    toState(MainScreen.State.RandomQuote)
                 },
             )
         }
