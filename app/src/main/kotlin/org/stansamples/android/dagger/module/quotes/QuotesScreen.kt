@@ -29,7 +29,7 @@ internal fun QuotesScreen(
             modifier = Modifier.fillMaxSize(),
             contentPadding = insets,
         ) {
-            quotes?.forEach { quote ->
+            quotes.forEach { quote ->
                 item(key = quote.id) {
                     Text(
                         text = quote.value,

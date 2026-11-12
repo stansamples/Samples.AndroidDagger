@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewmodel.compose.rememberViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import org.stansamples.android.dagger.provider.DaggerFinalProviders
 import org.stansamples.android.dagger.provider.Providers
@@ -30,7 +29,6 @@ internal class App : Application() {
         @Composable
         inline fun <reified T : ViewModel> viewModel(key: String = T::class.java.name): T {
             return viewModel(
-                viewModelStoreOwner = rememberViewModelStoreOwner(),
                 key = key,
                 factory = factory,
             )
