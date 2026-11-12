@@ -8,6 +8,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import org.stansamples.android.dagger.module.main.MainScreen
+import org.stansamples.android.dagger.module.quotes.QuotesRoute
 import org.stansamples.android.dagger.module.quotes.QuotesScreen
 import org.stansamples.android.dagger.module.quotes.RandomQuoteScreen
 import org.stansamples.android.dagger.module.settings.SettingsScreen
@@ -28,7 +29,7 @@ internal fun RouterScreen() {
                     states.value = null
                 },
             )
-            MainScreen.State.Quotes -> QuotesScreen(
+            MainScreen.State.Quotes -> QuotesRoute(
                 onBack = {
                     states.value = null
                 },
