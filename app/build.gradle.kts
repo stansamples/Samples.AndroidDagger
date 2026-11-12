@@ -8,10 +8,11 @@ repositories {
 
 plugins {
     id("com.android.application")
+    id("com.google.dagger.hilt.android") version "2.60.1"
+    id("com.google.devtools.ksp") version "2.3.12"
     id("org.jetbrains.compose") version "1.12.2"
     id("org.jetbrains.kotlin.plugin.compose") version "2.3.21"
     id("org.jetbrains.kotlin.plugin.serialization") version "2.3.21"
-    id("com.google.devtools.ksp") version "2.3.12"
 }
 
 android {
@@ -71,12 +72,13 @@ androidComponents.onVariants { variant ->
 }
 
 dependencies {
+    "realImplementation"("com.squareup.okhttp3:okhttp:5.3.0")
     implementation("androidx.activity:activity-compose:1.13.0")
+    implementation("androidx.hilt:hilt-lifecycle-viewmodel-compose:1.4.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.11.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-navigation3:2.11.0")
     implementation("androidx.navigation3:navigation3-ui:1.2.1")
+    implementation("com.google.dagger:hilt-android:2.60.1")
     implementation("org.jetbrains.compose.foundation:foundation:1.12.2")
-    "realImplementation"("com.squareup.okhttp3:okhttp:5.3.0")
-    implementation("com.google.dagger:dagger:2.60.1")
-    ksp("com.google.dagger:dagger-compiler:2.60.1")
+    ksp("com.google.dagger:hilt-compiler:2.60.1")
 }
