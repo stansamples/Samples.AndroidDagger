@@ -1,9 +1,13 @@
 package org.stansamples.android.dagger.provider
 
-internal interface Providers {
-    val contexts: Contexts
-    val loggers: Loggers
-    val flows: Flows
-    val locals: Locals
-    val remotes: Remotes
-}
+import javax.inject.Inject
+import javax.inject.Singleton
+
+@Singleton
+internal class Providers @Inject constructor(
+    val contexts: Contexts,
+    val loggers: Loggers,
+    val flows: Flows,
+    val locals: Locals,
+    val remotes: Remotes,
+)

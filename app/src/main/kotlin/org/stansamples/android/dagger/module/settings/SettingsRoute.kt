@@ -1,11 +1,11 @@
 package org.stansamples.android.dagger.module.settings
 
 import androidx.compose.runtime.Composable
-import org.stansamples.android.dagger.App
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 
 @Composable
 internal fun SettingsRoute() {
-    val viewModel = App.viewModel<SettingsViewModel>()
+    val viewModel = hiltViewModel<SettingsViewModel>()
     SettingsScreen(
         onSwitchColors = viewModel::switchColors,
     )

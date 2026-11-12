@@ -2,6 +2,7 @@ package org.stansamples.android.dagger.module.quotes
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -11,8 +12,10 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.stansamples.android.dagger.entity.Quote
 import org.stansamples.android.dagger.provider.Providers
+import javax.inject.Inject
 
-internal class RandomQuoteViewModel(
+@HiltViewModel
+internal class RandomQuoteViewModel @Inject constructor(
     private val providers: Providers,
 ) : ViewModel(CoroutineScope(providers.contexts.main + SupervisorJob())) {
     class State(

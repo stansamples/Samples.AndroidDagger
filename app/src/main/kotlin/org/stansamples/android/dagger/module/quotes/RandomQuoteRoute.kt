@@ -3,11 +3,11 @@ package org.stansamples.android.dagger.module.quotes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import org.stansamples.android.dagger.App
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 
 @Composable
 internal fun RandomQuoteRoute() {
-    val viewModel = App.viewModel<RandomQuoteViewModel>()
+    val viewModel = hiltViewModel<RandomQuoteViewModel>()
     val states = viewModel.states.collectAsState()
     val isLoading = viewModel.loadings.collectAsState().value
     LaunchedEffect(Unit) {

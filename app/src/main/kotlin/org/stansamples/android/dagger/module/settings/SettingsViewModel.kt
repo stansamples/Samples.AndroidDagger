@@ -2,14 +2,17 @@ package org.stansamples.android.dagger.module.settings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.stansamples.android.dagger.module.theme.Colors
 import org.stansamples.android.dagger.provider.Providers
+import javax.inject.Inject
 
-internal class SettingsViewModel(
+@HiltViewModel
+internal class SettingsViewModel @Inject constructor(
     private val providers: Providers,
 ) : ViewModel(CoroutineScope(providers.contexts.main + SupervisorJob())) {
     fun switchColors() = viewModelScope.launch {
